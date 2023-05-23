@@ -16,3 +16,55 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
+
+let i = 0;
+
+let dots = document.querySelector(".dots");
+for (i ; i < slides.length; i++) {
+	let pointdot = document.createElement("div");
+	pointdot.classList.add("dot");
+	pointdot.setAttribute("id", "dot" + i);
+	dots.appendChild(pointdot);
+}
+
+let dot0 = document.getElementById("dot0");
+dot0.classList.add("dot_selected");
+
+let imagebanner = document.querySelector(".banner-img");
+let pbanner = document.querySelector("#banner p");
+let countslides = 0;
+let countslidesmax = slides.length - 1;
+
+const buttonleft = document.querySelector(".arrow_left");
+buttonleft.addEventListener("click", () => {
+	let dotid = document.getElementById("dot" + countslides);
+	dotid.classList.remove("dot_selected");
+	if (countslides > 0) {
+		countslides -= 1;
+		imagebanner.src = "./assets/images/slideshow/" + slides[countslides].image;
+		pbanner.innerHTML = slides[countslides].tagLine;
+	} else {
+		countslides = countslidesmax;
+		imagebanner.src = "./assets/images/slideshow/" + slides[countslides].image;
+		pbanner.innerHTML = slides[countslides].tagLine;
+	}
+	let dotidclick = document.getElementById("dot" + countslides);
+	dotidclick.classList.add("dot_selected");
+})
+
+const buttonright = document.querySelector(".arrow_right");
+buttonright.addEventListener("click", () => {
+	let dotid = document.getElementById("dot" + countslides);
+	dotid.classList.remove("dot_selected");
+	if (countslides < countslidesmax) {
+		countslides += 1;
+		imagebanner.src = "./assets/images/slideshow/" + slides[countslides].image;
+		pbanner.innerHTML = slides[countslides].tagLine;
+	} else {
+		countslides = 0;
+		imagebanner.src = "./assets/images/slideshow/" + slides[countslides].image;
+		pbanner.innerHTML = slides[countslides].tagLine;
+	}
+	let dotidclick = document.getElementById("dot" + countslides);
+	dotidclick.classList.add("dot_selected");
+})
