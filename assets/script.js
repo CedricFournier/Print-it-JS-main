@@ -17,8 +17,8 @@ const slides = [
 	}
 ]
 
+/**************************point-selecteur***********************/
 let i = 0;
-
 let dots = document.querySelector(".dots");
 for (i ; i < slides.length; i++) {
 	let pointdot = document.createElement("div");
@@ -30,13 +30,24 @@ for (i ; i < slides.length; i++) {
 let dot0 = document.getElementById("dot0");
 dot0.classList.add("dot_selected");
 
+/**********************bouton-baniere*******************************/
+const buttonleft = document.querySelector(".arrow_left");
+buttonleft.addEventListener("click", () => {
+	slicerleft();
+})
+
+const buttonright = document.querySelector(".arrow_right");
+buttonright.addEventListener("click", () => {
+	slicerright();
+})
+
+/***************************function****************************/
 let imagebanner = document.querySelector(".banner-img");
 let pbanner = document.querySelector("#banner p");
 let countslides = 0;
 let countslidesmax = slides.length - 1;
 
-const buttonleft = document.querySelector(".arrow_left");
-buttonleft.addEventListener("click", () => {
+function slicerleft() {
 	let dotid = document.getElementById("dot" + countslides);
 	dotid.classList.remove("dot_selected");
 	if (countslides > 0) {
@@ -50,10 +61,9 @@ buttonleft.addEventListener("click", () => {
 	}
 	let dotidclick = document.getElementById("dot" + countslides);
 	dotidclick.classList.add("dot_selected");
-})
+}
 
-const buttonright = document.querySelector(".arrow_right");
-buttonright.addEventListener("click", () => {
+function slicerright() {
 	let dotid = document.getElementById("dot" + countslides);
 	dotid.classList.remove("dot_selected");
 	if (countslides < countslidesmax) {
@@ -67,4 +77,4 @@ buttonright.addEventListener("click", () => {
 	}
 	let dotidclick = document.getElementById("dot" + countslides);
 	dotidclick.classList.add("dot_selected");
-})
+}
